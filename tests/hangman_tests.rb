@@ -7,16 +7,16 @@ class Hangman_tests < Test::Unit::TestCase
     @hm.word = "pie"
   end
 
-	def setup
-		@hm = Hangman.new
-		@word = @hm.random_word
-	end
+  def setup
+  	@hm = Hangman.new
+  	@word = @hm.random_word
+  end
 
-	def test_random_word_is_a_string
-		assert @word.is_a?(String)
-	end
+  def test_random_word_is_a_string
+  	assert @word.is_a?(String)
+  end
 
-  def test_initial_chances_is_8 
+  def test_initial_chances_is_8
     assert_equal 8, @hm.chances
   end
 
@@ -45,6 +45,14 @@ class Hangman_tests < Test::Unit::TestCase
     setup_guess
     @hm.guess_letter("p")
     assert @hm.slate.include?("p")
+  end
+
+  def test_win
+    setup_guess
+    @hm.guess_letter("p")
+    @hm.guess_letter("i")
+    @hm.guess_letter("e")
+    assert @hm.win?
   end
 
 end

@@ -12,11 +12,11 @@ class Hangman
 
 	def random_word
 		words = "Many biological processes involve the conversion of energy into forms that are usable for chemical transformations and are quantum mechanical in nature Such processes involve chemical reactions light absorption formation of excited electronic states transfer of excitation energy and the transfer of electrons and protons hydrogen ions in chemical processes such as photosynthesis and cellular respiration".downcase.split(' ')
-		word = words.sample #randomly select a word
+		words.sample #randomly select a word
 	end
 
 	def guess_letter(guess)
-		while (guesses.include?(guess) || slate.include?(guess)) #loops until person has fresh guess
+        while (guesses.include?(guess) || slate.include?(guess)) #loops until person has fresh guess
 	  	puts "You have already guessed that! Guess again:"
 	  	guess = gets[0].downcase
 	  end
@@ -25,12 +25,12 @@ class Hangman
 	    guess = gets[0].downcase
 	  end
 
-	  if slate.include?(guess)
-      word.count(guess).times do
-       	slate[word.index(guess)] = guess
-       	word = word.sub(guess, ' ') # note: can't use sub! because this modifies the origin object, thus modifing original_word
+	  if original_word.include?(guess)
+          @word.count(guess).times do
+       	slate[@word.index(guess)] = guess
+       	@word = word.sub(guess, ' ') # note: can't use sub! because this modifies the origin object, thus modifing original_word
       end
-    else
+      else
      	guesses << guess
      	@chances -= 1
 	  end
