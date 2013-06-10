@@ -3,7 +3,7 @@ class Hangman
 
 	def random_word
 		words = "Many biological processes involve the conversion of energy into forms that are usable for chemical transformations and are quantum mechanical in nature Such processes involve chemical reactions light absorption formation of excited electronic states transfer of excitation energy and the transfer of electrons and protons hydrogen ions in chemical processes such as photosynthesis and cellular respiration".downcase.split(' ')
-		word = words.shuffle.first #randomly select a word
+		word = words.sample #randomly select a word
 	end
 
 	def win?(slate)
@@ -49,7 +49,7 @@ class Hangman
 	  	if word.include?(guess)
         word.count(guess).times do
         	slate[word.index(guess)] = guess
-        	word = word.sub(guess, ' ')
+        	word = word.sub(guess, ' ') # note: can't use sub! because this modifies the origin object, thus modifing original_word
         end
       else
       	guesses << guess
@@ -57,6 +57,7 @@ class Hangman
 	  	end
 		end
 
+		puts "     " + slate.join(' ')
 		puts "YOU WIN!!" if win?(slate)
 		puts "YOU LOSE! The word was \'#{original_word}\'. Try again?" if lose?(chances)
 	end
