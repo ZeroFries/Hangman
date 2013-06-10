@@ -5,6 +5,7 @@ class Hangman_tests < Test::Unit::TestCase
   def setup_guess
     @hm.original_word = "pie"
     @hm.word = "pie"
+    @hm.slate = ["_", "_", "_"]
   end
 
   def setup
@@ -55,4 +56,8 @@ class Hangman_tests < Test::Unit::TestCase
     assert @hm.win?
   end
 
+  def test_lose
+    @hm.chances = 0
+    assert @hm.lose?
+  end
 end
