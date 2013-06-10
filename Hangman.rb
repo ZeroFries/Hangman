@@ -31,7 +31,7 @@ class Hangman
 		slate = []
 		word.length.times { slate << "_" }
 
-		loop do 
+		loop do
 	  	break if win?(slate)
 	  	break if lose?(chances)
 	  	output(slate, chances)
@@ -62,6 +62,4 @@ class Hangman
 		puts "YOU LOSE! The word was \'#{original_word}\'. Try again?" if lose?(chances)
 	end
 end
-
-Hangman.new
 
